@@ -2,10 +2,15 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_app/models/images.dart';
 
 import 'package:flutter_app/models/information.dart';
 import 'package:flutter_app/models/pics.dart';
-import 'package:flutter_app/models/places.dart';
+import 'package:flutter_app/screens/abad.dart';
+import 'package:flutter_app/screens/food.dart';
+import 'package:flutter_app/screens/tourism.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import 'package:flutter_app/widgets/custom_tab_indicator.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -43,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: EdgeInsets.all(18),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(9.6),
-                        color: Colors.black,
+                        color: Colors.black54,
                       ),
                       child: SvgPicture.asset('assets/svg/icon_drawer.svg'),
                     ),
@@ -53,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       padding: EdgeInsets.all(18),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(9.5),
-                        color: Colors.black,
+                        color: Colors.black54,
                       ),
                       child: SvgPicture.asset('assets/svg/icon_search.svg'),
                     )
@@ -63,14 +68,32 @@ class _HomeScreenState extends State<HomeScreen> {
               // Text Widget for title
               Container(
                 decoration: BoxDecoration(color: Colors.grey),
-                child: Padding(padding: EdgeInsets.only(top: 50, left: 30),
-                  child: Text("Aurangabad Explorer",style: GoogleFonts.playfairDisplay(
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                  ),)
+                child: Container(
+                  decoration:BoxDecoration(color: Colors.black38,
+
+                  ),
+                  child: Center(
+
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(
+                          builder: (_) => Private(),
+                        ));
+                      },
+                      child: Text("Aurangabad ",style: GoogleFonts.playfairDisplay(
+                        fontSize: 54,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.orangeAccent,
+                      ),),
+                    ),
+
+
+
+
+                  ),
                 ),
               ),
+
 
               // Custom tab bar with Custom Indicator
               Container(
@@ -82,20 +105,22 @@ class _HomeScreenState extends State<HomeScreen> {
                     labelColor: Colors.black,
                     unselectedLabelColor: Colors.white,
                     labelStyle: GoogleFonts.lato(
-                      fontSize: 24, fontWeight: FontWeight.w700,
+                      fontSize: 28, fontWeight: FontWeight.w700,
                     ),
                     unselectedLabelStyle: GoogleFonts.lato(
-                      fontSize: 12, fontWeight: FontWeight.w700,
+                      fontSize: 18, fontWeight: FontWeight.w700,
                     ),
                     indicator: RoundedRectangleTabIndicator(
                       color: Colors.black, weight: 2.4, width: 14.4),
                     tabs: [
                       Tab(
                     child: Container(
-                      child: Text(" About Aurangabad"),
+
+                    child: Text(" About Aurangabad"),
+                    ),
 
                     ),
-                  ),
+
                   Tab(
                     child: Container(
                       child: Text(" Tourism Places "),
@@ -176,85 +201,57 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(padding: EdgeInsets.only(left: 28.8, top: 28.8),
               child: SmoothPageIndicator(controller: _pageContoller, count: informations.length,
                 effect: ExpandingDotsEffect(
-                  activeDotColor: Colors.black54,
-                  dotColor: Colors.black38,
+                  activeDotColor: Colors.black,
+                  dotColor: Colors.orange,
                   dotHeight: 4.8,
                   dotWidth: 6,
                   spacing: 4.8),
               ),
               ),
-              Padding(
-                padding: EdgeInsets.only(top: 33.6, left: 28.8, right: 28.8),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text("Tourism Places", style: GoogleFonts.playfairDisplay(
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                    ),
-                    Text(
-                      "Show All",
-                      style: GoogleFonts.lato(
-                        fontSize: 16.8,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white,
+              SizedBox(
+                width: 9.2,
+                child: Container(
+                  decoration: BoxDecoration(color: Colors.orangeAccent,
+                    borderRadius: BorderRadius.circular(4.0),
+                  ),
+
+
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      InkWell(
+                           onTap : (){
+                           Navigator.push(context, MaterialPageRoute(
+                                         builder: (_) => Travel(),
+                        ));
+                       },
+
+                        child: Text("Tourism Places", style: GoogleFonts.playfairDisplay(
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+
+                        ),
+
+                        ),
                       ),
-                    )
-                  ],
+
+
+                    ],
+                  ),
                 ),
               ),
+
               //list view for places
+
               Container(
-                margin: EdgeInsets.only(top: 33.6),
-                height: 45.6,
-                child: ListView.builder(itemCount: places.length ,
-                scrollDirection: Axis.horizontal,
-                  physics: BouncingScrollPhysics(),
-                padding: EdgeInsets.only(left: 28.8, right: 9.6),
-                  itemBuilder: (context, index){
-                  return Container(
-                    margin: EdgeInsets.only(right: 19.2),
-                    height: 45.6,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(9.6),
+                margin: EdgeInsets.only(top: 20.8, bottom: 16.8),
+                height: 114.8,
 
-                    ),
-                    child: Container(
-                    decoration: BoxDecoration(color: Colors.grey),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            width: 16.2,
-                          )
-                          ,
-
-
-                          Image.asset(places[index].image,
-                          height: 36.8),
-                          SizedBox(
-                            width: 16.2,
-                          ),
-
-
-
-                        ],
-                      ),
-                    ),
-                  );
-                    },
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(top: 28.8, bottom: 16.8),
-                height: 124.8,
                 child: ListView.builder(
                   itemCount: pics.length,
-                  padding: EdgeInsets.only(left: 28.8, right: 12),
+                  padding: EdgeInsets.only(left: 20.8, right: 12),
                   scrollDirection: Axis.horizontal,
                   physics: BouncingScrollPhysics(),
                   itemBuilder: (context, index){
@@ -267,14 +264,84 @@ class _HomeScreenState extends State<HomeScreen> {
                         image: DecorationImage(
                           fit: BoxFit.cover,
                           image: NetworkImage(pics[index].image)         ,
+                          
                         ),
                       ),
 
                     );
-                  }
+                  },
+
+
 
                 ),
-              )
+              ),
+              SizedBox(
+                width: 6.2,
+                child: Container(
+
+                    decoration: BoxDecoration(color: Colors.orangeAccent,
+                    borderRadius: BorderRadius.circular(4.0),
+                    ),
+
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap : (){
+                          Navigator.push(context, MaterialPageRoute(
+                            builder: (_) => Privacy(),
+                          ));
+
+
+                        },
+                        child: Text("Food Explorer", style: GoogleFonts.playfairDisplay(
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+
+
+                        ),
+
+                        ),
+                      ),
+                Icon(Icons.arrow_forward),
+
+
+                    ],
+                  ),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(top: 18.8, bottom: 14.8),
+                height: 100.8,
+
+                child: ListView.builder(
+                  itemCount: food.length,
+                  padding: EdgeInsets.only(left: 18.8, right: 10),
+                  scrollDirection: Axis.horizontal,
+                  physics: BouncingScrollPhysics(),
+                  itemBuilder: (context, index){
+                    return Container(
+                      height: 120.8,
+                      width: 180.4,
+                      margin: EdgeInsets.only(right: 10.8),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6.6),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: NetworkImage(food[index].image)         ,
+
+                        ),
+                      ),
+
+                    );
+                  },
+
+
+
+                ),
+              ),
 
 
 

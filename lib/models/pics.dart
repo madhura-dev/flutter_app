@@ -16,10 +16,7 @@ var picsData = [
     "image":
     "https://hhib.b-cdn.net/wp-content/uploads/2017/11/bibi-ka-maqbara-aurangabad.jpg"
   },
-  {
-    "image":
-    "http://mytraveltrippune.com/img/ashtvinayak_bhimashankar/ajanta-caves.jpg"
-  },
+
   {
     "image":
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTanitsa5VeXJxOoLVsdJ4EMA9X-zpZKmG3Xw&usqp=CAU"
@@ -36,4 +33,15 @@ var picsData = [
     "image":
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1u0YvPWbC_hq2XevwW8cUTJcdAQKWdRjdOw&usqp=CAU"
   },
+
+  {
+    "image":
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4P71g2zd61oUT6k69FVZxSjNLb_WB7C8JBA&usqp=CAU"
+  },
+
+  {
+    "image":
+    "https://static.toiimg.com/photo/52550880.cms"
+  },
+
 ];
